@@ -4,6 +4,12 @@ A TUI tools that simple process manager for developers.
 
 ![appman screenshot](./misc/appman.png)
 
+# Install
+
+```shell
+$ go install github.com/mrtc0/appman
+```
+
 # Example Configuration
 
 ```yaml

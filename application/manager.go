@@ -167,7 +167,15 @@ func (m *TuiApplicationManager) AddLogView() *TuiApplicationManager {
 
 func (m *TuiApplicationManager) SetupCleanupFunction() {
 	m.tuiApp.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
-		if event.Key() == tcell.KeyCtrlC {
+		switch event.Key() {
+		case tcell.KeyTAB:
+			if m.LogPages.HasFocus() {
+				m.tuiApp.SetFocus(m.ApplicationPages)
+			} else {
+				m.tuiApp.SetFocus(m.LogPages)
+			}
+
+		case tcell.KeyCtrlC:
 			for i := 1; i < m.ApplicationTable.GetRowCount(); i++ {
 				cell := m.ApplicationTable.GetCell(i, 0)
 

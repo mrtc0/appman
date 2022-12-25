@@ -10,7 +10,9 @@ A TUI tools that simple process manager for developers.
 $ go install github.com/mrtc0/appman
 ```
 
-# Example Configuration
+# Configuration
+
+### Example
 
 ```yaml
 - name: "frontend"
@@ -31,3 +33,33 @@ $ go install github.com/mrtc0/appman
   stopCommand: ["docker", "compose", "down"]
 ```
 
+### `name` (required)
+
+`name` is application name.
+
+### `path` (required)
+
+`path` is the directory from which to run the application.
+
+### `startCommand` (required)
+
+`startCommand` is a command to start an application.
+
+### `stopCommand` (optional)
+
+`startCommand` is a command to stop an application.  
+If `stopCommand` is not specified, appman will send SIGINT to the process when it stops the application.
+
+### `port` (optional)
+
+`port` is application port number.
+
+### `url` (optional)
+
+`url` is application URL.
+
+# Command
+
+- `Tab`: Switching focus.
+- `Enter`: Item selection.
+- `Ctrl + C` or `ESC`: Exit appman. All applications are automatically stopped.

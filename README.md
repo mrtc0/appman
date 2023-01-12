@@ -48,7 +48,7 @@ $ go install github.com/mrtc0/appman
 ### `stopCommand` (optional)
 
 `startCommand` is a command to stop an application.  
-If `stopCommand` is not specified, appman will send SIGINT to the process when it stops the application.
+If `stopCommand` is not specified, appman will send SIGTERM to the process when it stops the application.
 
 ### `port` (optional)
 

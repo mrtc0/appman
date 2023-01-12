@@ -5,6 +5,7 @@ import (
 	"hash/fnv"
 	"os"
 	"os/exec"
+	"syscall"
 
 	"github.com/fatih/color"
 	"github.com/mrtc0/appman/application/config"
@@ -211,5 +212,5 @@ func kill(pid int) error {
 		return err
 	}
 
-	return process.Kill()
+	return process.Signal(syscall.SIGTERM)
 }

@@ -10,6 +10,10 @@ import (
 	"github.com/rivo/tview"
 )
 
+const (
+	appmanExitConfirmMessage = "Do you want to exit appman?"
+)
+
 type TuiApplicationManager struct {
 	tuiApp *tview.Application
 
@@ -117,6 +121,20 @@ func (m *TuiApplicationManager) PopupApplicationActionModal(row, column int) {
 	m.ApplicationPages.AddPage("action", modal, true, true)
 }
 
+func (m *TuiApplicationManager) PopupExitAppmanConfirmModal() {
+	actions := []string{"Cancel", "Exit"}
+	modal := tview.NewModal().SetText(appmanExitConfirmMessage).AddButtons(actions).SetDoneFunc(func(_ int, buttonLabel string) {
+		switch buttonLabel {
+		case "Exit":
+			m.tuiApp.Stop()
+		}
+
+		m.ApplicationPages.RemovePage("action")
+	})
+
+	m.ApplicationPages.AddPage("action", modal, true, true)
+}
+
 func (m *TuiApplicationManager) AddApplicationView(applications []Application) *TuiApplicationManager {
 	table := tview.NewTable().SetBorders(true)
 
@@ -130,7 +148,7 @@ func (m *TuiApplicationManager) AddApplicationView(applications []Application) *
 
 	table.Select(0, 0).SetFixed(1, 1).SetDoneFunc(func(key tcell.Key) {
 		if key == tcell.KeyEscape {
-			m.tuiApp.Stop()
+			m.PopupExitAppmanConfirmModal()
 		}
 		if key == tcell.KeyEnter {
 			table.SetSelectable(true, true)

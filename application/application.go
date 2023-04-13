@@ -177,6 +177,7 @@ func (app *Application) Stop() *Application {
 func (app *Application) start() error {
 	cmd := exec.Command(app.StartCommand[0], app.StartCommand[1:]...)
 	cmd.Dir = app.Path
+	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 	cmd.Env = append(os.Environ(), app.Env...)
 	cmd.Stdout = app.Logger
 	cmd.Stderr = app.Logger
@@ -212,5 +213,5 @@ func kill(pid int) error {
 		return err
 	}
 
-	return process.Signal(syscall.SIGTERM)
+	return syscall.Kill(-process.Pid, syscall.SIGINT)
 }

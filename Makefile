@@ -1,5 +1,5 @@
 build:
-	goreleaser release --snapshot --rm-dist
+	go build -o dist/appman main.go
 
 test:
 	go test ./...

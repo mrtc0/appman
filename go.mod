@@ -8,7 +8,7 @@ require (
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/rivo/tview v0.0.0-20221217182043-ccce554c3803
 	github.com/stretchr/testify v1.8.1
-	github.com/urfave/cli/v2 v2.23.7
+	github.com/urfave/cli/v2 v2.25.3
 	gopkg.in/yaml.v2 v2.4.0
 )
 

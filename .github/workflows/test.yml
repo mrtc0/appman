@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
       - name: Run test
         run: go test ./...
 
